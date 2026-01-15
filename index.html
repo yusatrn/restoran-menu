@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Restoran Menüsü</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+
+    body {
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #b22222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    nav {
+      background: #8b0000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    h2 {
+      margin: 25px 0 10px;
+      border-bottom: 2px solid #b22222;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .menu-section {
+      margin-bottom: 20px;
+    }
+
+    .menu-item {
+      background: #fff;
+      margin-bottom: 10px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .menu-item-info {
+      max-width: 75%;
+    }
+
+    .menu-item-title {
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+
+    .menu-item-desc {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .menu-item-price {
+      font-weight: bold;
+      color: #b22222;
+      font-size: 15px;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+      padding: 15px 0 25px;
+    }
+
+    .highlight {
+      background: #fff7e6;
+      border-left: 4px solid #ff9800;
+    }
+
+    @media (max-width: 600px) {
+      .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .menu-item-price {
+        margin-top: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Lezzet Durağı</h1>
+    <p>Sıcak yemekler, taze tatlar, günlük menü</p>
+  </header>
+
+  <nav>
+    <a href="#corbalar">Çorbalar</a>
+    <a href="#anayemek">Ana Yemekler</a>
+    <a href="#tatli">Tatlılar</a>
+    <a href="#icecek">İçecekler</a>
+  </nav>
+
+  <div class="container">
+
+    <section id="corbalar" class="menu-section">
+      <h2>Çorbalar</h2>
+
+      <div class="menu-item highlight">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Mercimek Çorbası</div>
+          <div class="menu-item-desc">Kırmızı mercimekten, limon ve tereyağlı servis.</div>
+        </div>
+        <div class="menu-item-price">&#36;60</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Ezogelin Çorbası</div>
+          <div class="menu-item-desc">Bol baharatlı, geleneksel tarif.</div>
+        </div>
+        <div class="menu-item-price">&#36;65</div>
+      </div>
+    </section>
+
+    <section id="anayemek" class="menu-section">
+      <h2>Ana Yemekler</h2>
+
+      <div class="menu-item highlight">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Izgara Köfte</div>
+          <div class="menu-item-desc">Porsiyon köfte, pilav ve salata ile servis.</div>
+        </div>
+        <div class="menu-item-price">&#36;160</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Tavuk Izgara</div>
+          <div class="menu-item-desc">Marine edilmiş tavuk ızgara, garnitür ve salata.</div>
+        </div>
+        <div class="menu-item-price">&#36;155</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Sebzeli Makarna</div>
+          <div class="menu-item-desc">Mevsim sebzeleriyle, kremalı sos.</div>
+        </div>
+        <div class="menu-item-price">&#36;140</div>
+      </div>
+    </section>
+
+    <section id="tatli" class="menu-section">
+      <h2>Tatlılar</h2>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Sütlaç</div>
+          <div class="menu-item-desc">Fırınlanmış, üzeri hafif kızarmış sütlaç.</div>
+        </div>
+        <div class="menu-item-price">&#36;70</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Baklava (4 dilim)</div>
+          <div class="menu-item-desc">Tereyağlı, bol Antep fıstıklı.</div>
+        </div>
+        <div class="menu-item-price">&#36;90</div>
+      </div>
+    </section>
+
+    <section id="icecek" class="menu-section">
+      <h2>İçecekler</h2>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Ayran</div>
+          <div class="menu-item-desc">Köpüklü, tuzu dengeli.</div>
+        </div>
+        <div class="menu-item-price">&#36;30</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Kola / Gazlı İçecek</div>
+          <div class="menu-item-desc">33 cl cam şişe.</div>
+        </div>
+        <div class="menu-item-price">&#36;40</div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-title">Çay</div>
+          <div class="menu-item-desc">Taze demlenmiş, ince belli bardakta.</div>
+        </div>
+        <div class="menu-item-price">&#36;15</div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    © 2026 Lezzet Durağı · Örnek menü sitesi
+  </footer>
+
+</body>
+</html>
