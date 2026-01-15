@@ -1,239 +1,303 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Restoran Menüsü</title>
+  <meta charset="UTF-8" />
+  <title>Lezzet Durağı - Menü</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-
-    body {
-      background: #f4f4f4;
-      color: #333;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:#f4f4f4;
+      color:#222;
+      padding:0;
     }
-
-    header {
-      background: #b22222;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
+    header{
+      background:linear-gradient(135deg,#ff7a18,#ffb347);
+      color:#fff;
+      padding:24px 16px 32px;
+      text-align:center;
+      box-shadow:0 2px 10px rgba(0,0,0,.15);
     }
-
-    header h1 {
-      margin-bottom: 5px;
+    header h1{
+      font-size:28px;
+      letter-spacing:1px;
+      margin-bottom:6px;
     }
-
-    header p {
-      font-size: 14px;
-      opacity: 0.9;
+    header p{
+      font-size:14px;
+      opacity:.9;
     }
-
-    nav {
-      background: #8b0000;
-      padding: 10px;
-      text-align: center;
+    .container{
+      max-width:800px;
+      margin: -20px auto 40px;
+      padding:0 12px;
     }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
+    .menu-card{
+      background:#fff;
+      border-radius:12px;
+      padding:18px 16px 20px;
+      box-shadow:0 4px 15px rgba(0,0,0,.08);
     }
-
-    nav a:hover {
-      text-decoration: underline;
+    .menu-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:12px;
+      gap:10px;
+      flex-wrap:wrap;
     }
-
-    .container {
-      max-width: 960px;
-      margin: 20px auto;
-      padding: 0 15px;
+    .menu-title{
+      font-size:18px;
+      font-weight:600;
     }
-
-    h2 {
-      margin: 25px 0 10px;
-      border-bottom: 2px solid #b22222;
-      display: inline-block;
-      padding-bottom: 5px;
+    .menu-badge{
+      font-size:11px;
+      background:#ffe8c7;
+      color:#8a4b00;
+      padding:3px 8px;
+      border-radius:999px;
+      text-transform:uppercase;
+      letter-spacing:.5px;
     }
-
-    .menu-section {
-      margin-bottom: 20px;
+    .category-tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:14px;
     }
-
-    .menu-item {
-      background: #fff;
-      margin-bottom: 10px;
-      padding: 10px 12px;
-      border-radius: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    .category-tabs button{
+      border:none;
+      border-radius:999px;
+      padding:6px 12px;
+      font-size:13px;
+      cursor:pointer;
+      background:#f0f0f0;
+      color:#333;
+      transition:all .18s ease;
     }
-
-    .menu-item-info {
-      max-width: 75%;
+    .category-tabs button:hover{
+      background:#e2e2e2;
     }
-
-    .menu-item-title {
-      font-weight: bold;
-      margin-bottom: 3px;
+    .category-tabs button.active{
+      background:#ff7a18;
+      color:#fff;
+      box-shadow:0 2px 6px rgba(0,0,0,.18);
     }
-
-    .menu-item-desc {
-      font-size: 13px;
-      color: #666;
+    .search-box{
+      margin:4px 0 14px;
     }
-
-    .menu-item-price {
-      font-weight: bold;
-      color: #b22222;
-      font-size: 15px;
-      margin-left: 10px;
-      white-space: nowrap;
+    .search-box input{
+      width:100%;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid #ddd;
+      font-size:13px;
+      outline:none;
+      transition:border .15s ease,box-shadow .15s ease;
     }
-
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #777;
-      padding: 15px 0 25px;
+    .search-box input:focus{
+      border-color:#ff7a18;
+      box-shadow:0 0 0 2px rgba(255,122,24,.25);
     }
-
-    .highlight {
-      background: #fff7e6;
-      border-left: 4px solid #ff9800;
+    .menu-items{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
-
-    @media (max-width: 600px) {
-      .menu-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .menu-item-price {
-        margin-top: 5px;
-      }
+    .item{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 8px;
+      border-radius:10px;
+      transition:background .15s ease,transform .1s ease;
+    }
+    .item:hover{
+      background:#fff7f0;
+      transform:translateY(-1px);
+    }
+    .item-left{
+      flex:1;
+      min-width:0;
+    }
+    .item-name{
+      font-size:14px;
+      font-weight:600;
+      margin-bottom:2px;
+    }
+    .item-desc{
+      font-size:12px;
+      color:#666;
+    }
+    .item-right{
+      text-align:right;
+      min-width:70px;
+    }
+    .item-price{
+      font-size:14px;
+      font-weight:700;
+      color:#ff7a18;
+    }
+    .item-tag{
+      font-size:11px;
+      color:#999;
+    }
+    .no-result{
+      font-size:13px;
+      color:#777;
+      padding:10px 0 4px;
+    }
+    footer{
+      text-align:center;
+      font-size:12px;
+      color:#777;
+      margin-bottom:18px;
+      padding:0 16px;
+    }
+    footer p{margin-bottom:4px;}
+    footer strong{color:#444;}
+    @media(min-width:768px){
+      header h1{font-size:32px;}
+      .menu-card{padding:20px 22px 24px;}
+      .item-name{font-size:15px;}
+      .item-price{font-size:15px;}
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>Lezzet Durağı</h1>
-    <p>Sıcak yemekler, taze tatlar, günlük menü</p>
+    <p>Sıcak yemekler, taze tatlar, samimi ortam 🍽️</p>
   </header>
 
-  <nav>
-    <a href="#corbalar">Çorbalar</a>
-    <a href="#anayemek">Ana Yemekler</a>
-    <a href="#tatli">Tatlılar</a>
-    <a href="#icecek">İçecekler</a>
-  </nav>
-
   <div class="container">
-
-    <section id="corbalar" class="menu-section">
-      <h2>Çorbalar</h2>
-
-      <div class="menu-item highlight">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Mercimek Çorbası</div>
-          <div class="menu-item-desc">Kırmızı mercimekten, limon ve tereyağlı servis.</div>
+    <div class="menu-card">
+      <div class="menu-header">
+        <div>
+          <div class="menu-title">Günlük Menü</div>
+          <div style="font-size:12px;color:#777;">Kategori seç, ara, fiyatları incele.</div>
         </div>
-        <div class="menu-item-price">&#36;60</div>
+        <span class="menu-badge">Bugün açık</span>
       </div>
 
-      <div class="menu-item">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Ezogelin Çorbası</div>
-          <div class="menu-item-desc">Bol baharatlı, geleneksel tarif.</div>
-        </div>
-        <div class="menu-item-price">&#36;65</div>
-      </div>
-    </section>
-
-    <section id="anayemek" class="menu-section">
-      <h2>Ana Yemekler</h2>
-
-      <div class="menu-item highlight">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Izgara Köfte</div>
-          <div class="menu-item-desc">Porsiyon köfte, pilav ve salata ile servis.</div>
-        </div>
-        <div class="menu-item-price">&#36;160</div>
+      <div class="category-tabs">
+        <button class="active" data-cat="hepsi">Hepsi</button>
+        <button data-cat="kahvalti">Kahvaltı</button>
+        <button data-cat="anayemek">Ana Yemek</button>
+        <button data-cat="tatli">Tatlı</button>
+        <button data-cat="icecek">İçecek</button>
       </div>
 
-      <div class="menu-item">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Tavuk Izgara</div>
-          <div class="menu-item-desc">Marine edilmiş tavuk ızgara, garnitür ve salata.</div>
-        </div>
-        <div class="menu-item-price">&#36;155</div>
+      <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Ürün ara... (örn: tost, çorba, kola)" />
       </div>
 
-      <div class="menu-item">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Sebzeli Makarna</div>
-          <div class="menu-item-desc">Mevsim sebzeleriyle, kremalı sos.</div>
-        </div>
-        <div class="menu-item-price">&#36;140</div>
-      </div>
-    </section>
-
-    <section id="tatli" class="menu-section">
-      <h2>Tatlılar</h2>
-
-      <div class="menu-item">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Sütlaç</div>
-          <div class="menu-item-desc">Fırınlanmış, üzeri hafif kızarmış sütlaç.</div>
-        </div>
-        <div class="menu-item-price">&#36;70</div>
+      <div id="items" class="menu-items">
+        <!-- JS ile doldurulacak -->
       </div>
 
-      <div class="menu-item">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Baklava (4 dilim)</div>
-          <div class="menu-item-desc">Tereyağlı, bol Antep fıstıklı.</div>
-        </div>
-        <div class="menu-item-price">&#36;90</div>
+      <div id="noResult" class="no-result" style="display:none;">
+        Aradığın kriterlere uygun ürün bulunamadı.
       </div>
-    </section>
-
-    <section id="icecek" class="menu-section">
-      <h2>İçecekler</h2>
-
-      <div class="menu-item">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Ayran</div>
-          <div class="menu-item-desc">Köpüklü, tuzu dengeli.</div>
-        </div>
-        <div class="menu-item-price">&#36;30</div>
-      </div>
-
-      <div class="menu-item">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Kola / Gazlı İçecek</div>
-          <div class="menu-item-desc">33 cl cam şişe.</div>
-        </div>
-        <div class="menu-item-price">&#36;40</div>
-      </div>
-
-      <div class="menu-item">
-        <div class="menu-item-info">
-          <div class="menu-item-title">Çay</div>
-          <div class="menu-item-desc">Taze demlenmiş, ince belli bardakta.</div>
-        </div>
-        <div class="menu-item-price">&#36;15</div>
-      </div>
-    </section>
-
+    </div>
   </div>
 
   <footer>
-    © 2026 Lezzet Durağı · Örnek menü sitesi
+    <p><strong>Adres:</strong> Örnek Cad. No:15, Merkez / İstanbul</p>
+    <p><strong>Telefon:</strong> 0 (212) 000 00 00</p>
+    <p><strong>Çalışma Saatleri:</strong> 09:00 - 23:00</p>
   </footer>
 
+  <script>
+    const data=[
+      {ad:"Serpme Kahvaltı",aciklama:"2 kişilik, zengin kahvaltı tabağı.",fiyat:320,kategori:"kahvalti"},
+      {ad:"Karışık Tost",aciklama:"Kaşar, sucuk, domates, biber.",fiyat:95,kategori:"kahvalti"},
+      {ad:"Menemen",aciklama:"3 yumurta, domates, biber, isteğe göre sucuklu.",fiyat:110,kategori:"kahvalti"},
+      {ad:"Mercimek Çorbası",aciklama:"Ev yapımı, limon ve ekmek ile servis.",fiyat:75,kategori:"anayemek"},
+      {ad:"Izgara Köfte",aciklama:"Pilav, salata ve közlenmiş biber ile.",fiyat:190,kategori:"anayemek"},
+      {ad:"Tavuk Izgara",aciklama:"Tereyağlı pilav ve mevsim salatası.",fiyat:175,kategori:"anayemek"},
+      {ad:"Makarna Napolitan",aciklama:"Domates soslu, parmesan ile.",fiyat:135,kategori:"anayemek"},
+      {ad:"Fırın Sütlaç",aciklama:"Klasik fırın sütlaç, hafif tatlı.",fiyat:80,kategori:"tatli"},
+      {ad:"Çikolatalı Sufle",aciklama:"Akışkan çikolatalı, dondurma ile.",fiyat:110,kategori:"tatli"},
+      {ad:"Trileçe",aciklama:"Karamelli, yumuşak dokulu tatlı.",fiyat:95,kategori:"tatli"},
+      {ad:"Çay",aciklama:"İnce belli bardakta demli çay.",fiyat:20,kategori:"icecek"},
+      {ad:"Türk Kahvesi",aciklama:"Orta şekerli, lokum ile servis.",fiyat:45,kategori:"icecek"},
+      {ad:"Ayran",aciklama:"Soğuk ve köpüklü.",fiyat:30,kategori:"icecek"},
+      {ad:"Kola / Gazlı İçecek",aciklama:"330 ml kutu içecek.",fiyat:40,kategori:"icecek"}
+    ];
+
+    const itemsEl=document.getElementById("items");
+    const noResultEl=document.getElementById("noResult");
+    const searchInput=document.getElementById("searchInput");
+    const tabButtons=document.querySelectorAll(".category-tabs button");
+
+    let aktifKategori="hepsi";
+    let aramaMetni="";
+
+    function formatFiyat(tl){
+      return tl.toLocaleString("tr-TR",{minimumFractionDigits:0})+" ₺";
+    }
+
+    function filtreleVeGoster(){
+      const filtrelenmis=data.filter(u=>{
+        const katUyum=aktifKategori==="hepsi"||u.kategori===aktifKategori;
+        const ara=aramaMetni.trim().toLowerCase();
+        const araUyum=!ara||
+          u.ad.toLowerCase().includes(ara)||
+          u.aciklama.toLowerCase().includes(ara);
+        return katUyum&&araUyum;
+      });
+
+      itemsEl.innerHTML="";
+      if(!filtrelenmis.length){
+        noResultEl.style.display="block";
+        return;
+      }
+      noResultEl.style.display="none";
+
+      filtrelenmis.forEach(u=>{
+        const item=document.createElement("div");
+        item.className="item";
+        item.innerHTML=`
+          <div class="item-left">
+            <div class="item-name">${u.ad}</div>
+            <div class="item-desc">${u.aciklama}</div>
+          </div>
+          <div class="item-right">
+            <div class="item-price">${formatFiyat(u.fiyat)}</div>
+            <div class="item-tag">${etiketYaz(u.kategori)}</div>
+          </div>
+        `;
+        itemsEl.appendChild(item);
+      });
+    }
+
+    function etiketYaz(k){
+      switch(k){
+        case "kahvalti":return "Kahvaltı";
+        case "anayemek":return "Ana Yemek";
+        case "tatli":return "Tatlı";
+        case "icecek":return "İçecek";
+        default:return "";
+      }
+    }
+
+    tabButtons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        tabButtons.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        aktifKategori=btn.getAttribute("data-cat");
+        filtreleVeGoster();
+      });
+    });
+
+    searchInput.addEventListener("input",e=>{
+      aramaMetni=e.target.value;
+      filtreleVeGoster();
+    });
+
+    filtreleVeGoster();
+  </script>
 </body>
 </html>
